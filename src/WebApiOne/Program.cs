@@ -2,6 +2,12 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// var isOpenApiExecution = builder.Environment.IsEnvironment("ApiDescription");
+// if (!isOpenApiExecution)
+// {
+//     throw new Exception("Sample exception to demonstrate that Api Description build should skip this");
+// }
+
 builder.Services.AddOpenApi();
 
 builder.Services.AddCors(
