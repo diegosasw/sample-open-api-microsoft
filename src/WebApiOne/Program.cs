@@ -1,12 +1,14 @@
+using System.Reflection;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// var isOpenApiExecution = builder.Environment.IsEnvironment("ApiDescription");
-// if (!isOpenApiExecution)
-// {
-//     throw new Exception("Sample exception to demonstrate that Api Description build should skip this");
-// }
+var isOpenApiExecution = Assembly.GetEntryAssembly()?.GetName().Name == "GetDocument.Insider"; // See workaround https://github.com/dotnet/aspnetcore/issues/54698#issuecomment-2312500285
+Console.WriteLine($"Is OpenApi: {isOpenApiExecution}");
+if (!isOpenApiExecution)
+{
+    throw new Exception("Sample exception to demonstrate that Api Description build should skip this");
+}
 
 builder.Services.AddOpenApi();
 
